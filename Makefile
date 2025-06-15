@@ -1,4 +1,6 @@
 CC=g++
+
+MNIST_ML_ROOT := $(shell pwd)
 INCLUDE_DIR := $(MNIST_ML_ROOT)/include
 SRC := $(MNIST_ML_ROOT)/src
 CFLAGS := -std=c++11 -g
@@ -23,6 +25,9 @@ obj/data.o: $(SRC)/data.cc
 
 obj/common.o: $(SRC)/common.cc
 	$(CC) -fPIC $(CFLAGS)  -o obj/common.o -I$(INCLUDE_DIR)/* -c $(SRC)/common.cc
+
+run:
+    LD_LIBRARY_PATH=$(MNIST_ML_ROOT)/lib:$$LD_LIBRARY_PATH ./main
 
 clean:
 	rm -r $(MNIST_ML_ROOT)/lib
